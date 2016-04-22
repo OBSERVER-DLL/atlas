@@ -2,7 +2,7 @@
     "variables": {
         "aws_access_key": "{{env `aws_access_key`}}",
         "aws_secret_key": "{{env `aws_access_key`}}",
-        "atlas_username": "ATLAS_USERNAME"
+        "atlas_username": "ptr"
     },
     "builders": [{
         "type": "amazon-ebs",
@@ -57,7 +57,7 @@
       {
         "type": "atlas",
         "artifact": "{{user `atlas_username`}}/haproxy",
-        "artifact_type": "aws.ami",
+        "artifact_type": "amazon.ami",
         "metadata": {
           "created_at": "{{timestamp}}"
         }

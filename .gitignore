@@ -1,9 +1,9 @@
 # vagrant directory
 .vagrant/
 
-# terraform state files
+# terraform
 terraform.tfstate*
-
+*.terraform*
 # vim temp files
 .*.swp
 .*.swp

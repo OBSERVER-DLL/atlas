@@ -2,7 +2,7 @@
     "variables": {
         "aws_access_key": "{{env `aws_access_key`}}",
         "aws_secret_key": "{{env `aws_access_key`}}",
-        "atlas_username": "ATLAS_USERNAME"
+        "atlas_username": "ptr"
     },
     "builders": [{
         "type": "amazon-ebs",
@@ -16,19 +16,19 @@
     }],
     "push": {
       "name": "{{user `atlas_username`}}/nodejs",
-      "vcs": false
+      "vcs": true
     },
     "provisioners": [
-    {   
+    {
         "type": "shell",
         "inline": [
             "sudo mkdir /application",
             "sudo chmod a+w /application"
         ]
     },
-    {   
+    {
         "type": "file",
-        "source": "/packer/app",
+        "source": "app",
         "destination": "/application"
     },
     {
@@ -59,7 +59,7 @@
       {
         "type": "atlas",
         "artifact": "{{user `atlas_username`}}/nodejs",
-        "artifact_type": "aws.ami",
+        "artifact_type": "amazon.ami",
         "metadata": {
           "created_at": "{{timestamp}}"
         }
